@@ -31,6 +31,11 @@ import scp.utils.Formatacao;
  * @author Desenvolvimento
  */
 public class PmpconhecidoController implements Initializable {
+    
+    public PmpconhecidoController (){
+
+    }
+    
 
     @FXML
     private Label peso_liq;
@@ -63,9 +68,12 @@ public class PmpconhecidoController implements Initializable {
     @FXML
     private Pane pane_peca;
 
+    public static String codPassado;
     private boolean calcularPecas = false;
     private String pmp;
     Thread displayThread;
+    
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -78,7 +86,7 @@ public class PmpconhecidoController implements Initializable {
         Formatacao.onlyNumber(tf_cod_peca);
         cb_grandeza.setValue("kg");
         pane_peca.setVisible(false);
-        
+        preencheCampos();
     }
 
     private void eventos() {
@@ -109,6 +117,27 @@ public class PmpconhecidoController implements Initializable {
                 JOptionPane.showMessageDialog(null, "Peça não encontrada");
             }
         });
+    }
+    
+    private void preencheCampos(){
+        if(codPassado != null){
+            Pecas pec = new Pecas();
+            pec = pec.procurarPeca(Integer.parseInt(codPassado));
+            if (pec != null){
+                pane_peca.setVisible(true);
+                tf_cod_peca.setText(codPassado);
+                lb_nome_peca.setText(pec.getNome());
+                lb_desc.setText(pec.getDescricao());
+                lb_pmp.setText(pec.getPmp()+pec.getGrandeza());
+                cb_grandeza.setValue(pec.getGrandeza());
+                pmp = pec.getPmp();
+                calcularPecas = true;
+                codPassado = null;
+            }else {
+                pane_peca.setVisible(false);
+                JOptionPane.showMessageDialog(null, "Peça não encontrada");
+            }
+        }
     }
 
     private void DisplayThread() {

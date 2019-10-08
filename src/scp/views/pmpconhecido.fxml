@@ -27,7 +27,7 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="tf_pmp" layoutX="435.0" layoutY="26.0" text="EX :  9.990">
+            <TextField fx:id="tf_pmp" layoutX="435.0" layoutY="26.0">
                <font>
                   <Font size="14.0" />
                </font></TextField>

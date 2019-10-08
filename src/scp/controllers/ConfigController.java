@@ -11,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import scp.main.Principal;
 import scp.models.LerSerial;
 import scp.models.Propriedades;
 

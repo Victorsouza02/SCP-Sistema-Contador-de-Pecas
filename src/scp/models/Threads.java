@@ -61,7 +61,7 @@ public class Threads {
                 status = true;
                 Platform.runLater(() -> {
                     Principal.closeErrorStage();
-                    Principal.initRootLayout();
+                    Principal.initRootLayout(Principal.principalScene(),"Sistema Contador de Peças - EBM Metrologia");
                 });
             }
             try {

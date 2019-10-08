@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import scp.controllers.PmpconhecidoController;
 import scp.models.Autorizacao;
 import scp.models.LerSerial;
 import scp.models.Propriedades;
@@ -52,13 +53,12 @@ public class Principal extends Application {
             //Inicia Stage Principal e as Threads
             this.primaryStage = stage;
             this.errorStage = stage;
-            initRootLayout();
+            initRootLayout(Principal.principalScene(), "Sistema Contador de Peças - EBM Metrologia");
             serial = new LerSerial(Propriedades.getPorta(),Propriedades.getEquipamento());
             securityThread = new Thread(protecaoPendrive);
             securityThread.start();
             serialThread = new Thread(lerSerial);
             serialThread.start();
-
         } else { //SE NÃO ESTIVER AUTORIZADO
             //Inicia Stage de Erro
             this.errorStage = stage;
@@ -67,12 +67,10 @@ public class Principal extends Application {
     }
     
     
-    public static void initRootLayout() { //INICIA TELA PRINCIPAL
-        try {
-            Parent root = FXMLLoader.load(Principal.class.getResource("/scp/views/telaprincipal.fxml"));
-            primaryStage.setTitle("Sistema Contador de Peças - EBM Metrologia");
+    public static void initRootLayout(Scene scene, String titulo) { //INICIA TELA PRINCIPAL
+            primaryStage.setTitle(titulo);
             primaryStage.getIcons().addAll(new Image(Principal.class.getResourceAsStream("/scp/imgs/ebmico.jpg")));
-            primaryStage.setScene(new Scene(root));
+            primaryStage.setScene(scene);
             primaryStage.setResizable(false);
             primaryStage.show();
             primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -81,9 +79,6 @@ public class Principal extends Application {
                     System.exit(0);
                 }
             });
-        } catch (IOException e) {
-            e.printStackTrace();
-        } 
     }
     
     
@@ -110,33 +105,32 @@ public class Principal extends Application {
         primaryStage.close();
     }
     
+    public static void closeModalStage(){ //FECHA TELA PRINCIPAL
+        secondStage.close();
+    }
+    
     public static void closeErrorStage(){ //FECHA TELA DE ERRO
         errorStage.close();
     }
-    
-    //CARREGA SCENE NO STAGE SECUNDÁRIO COMO MODAL
-    public static void loadScene(Scene scene, String titlePage, boolean resizable) {
-         if(secondStage == null){   
-            secondStage = new Stage();
-            secondStage.initModality(Modality.WINDOW_MODAL);
-            secondStage.initOwner(primaryStage);
-            secondStage.getIcons().add(new Image(Principal.class.getResourceAsStream("/scp/imgs/ebmico.jpg")));
-            secondStage.setResizable(resizable);
-            secondStage.setTitle(titlePage);
-            secondStage.setScene(scene);
-            secondStage.show();
-
-            secondStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+       
+    public static void novaTela(Scene scene, String titlePage, boolean resizable){
+        Stage stage = new Stage();
+         stage.initModality(Modality.WINDOW_MODAL);
+         stage.initOwner(primaryStage);
+         stage.getIcons().add(new Image(Principal.class.getResourceAsStream("/scp/imgs/ebmico.jpg")));
+         stage.setResizable(resizable);
+         stage.setTitle(titlePage);
+         stage.setScene(scene);
+         stage.show();
+         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
                 public void handle(WindowEvent arg0) {
                     if(ativoThreadPmp){
                         ativoThreadPmp = false;
                     }
-                    secondStage.close();
-                    secondStage = null;
+                    stage.close();
                 }
             });
-         }
     }
     
     
@@ -154,6 +148,21 @@ public class Principal extends Application {
         
         return scene;
     }
+    
+     public static Scene principalScene(){ //SCENE DO MENU SOBRE
+        Parent root;
+        Scene scene = null;
+        try {
+            root = FXMLLoader.load(Principal.class.getResource("/scp/views/telaprincipal.fxml"));
+            scene = new Scene(root, 657, 531);
+            
+        } catch (IOException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        return scene;
+    }
+    
     
     public static Scene relatorioScene(){ //SCENE DO MENU RELATÓRIO
         Parent root;
@@ -230,7 +239,22 @@ public class Principal extends Application {
         Scene scene = null;
         try {
             root = FXMLLoader.load(Principal.class.getResource("/scp/views/pmpconhecido.fxml"));
-            scene = new Scene(root, 968, 490);
+            scene = new Scene(root, 968, 543);
+            
+        } catch (IOException ex){
+            ex.printStackTrace();
+        }
+        
+        return scene;
+    }
+    
+     
+    public static Scene gerenciarPecasScene(){ //SCENE DO MENU DE PESQUISA DE PLACA
+        Parent root;
+        Scene scene = null;
+        try {
+            root = FXMLLoader.load(Principal.class.getResource("/scp/views/gerenciarpecas.fxml"));
+            scene = new Scene(root, 823, 535);
             
         } catch (IOException ex){
             ex.printStackTrace();

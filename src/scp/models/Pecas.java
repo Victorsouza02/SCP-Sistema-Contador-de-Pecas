@@ -3,6 +3,8 @@ package scp.models;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import scp.persistence.AcoesSQL;
 
 
@@ -43,8 +45,14 @@ public class Pecas {
         acao.cadastrarPeca(this);
     }
     
-    private void editarPeca(){
-        
+    public void editarPeca(){
+         AcoesSQL acao = new AcoesSQL();
+         acao.editarPeca(this);
+    }
+    
+    public void deletarPeca(String cod){
+         AcoesSQL acao = new AcoesSQL();
+         acao.deletarPeca(Integer.parseInt(cod));
     }
     
     public Pecas procurarPeca(int cod){
@@ -52,10 +60,23 @@ public class Pecas {
         return acao.procurarPeca(cod);
     }
     
-    public static List<String> listarNomesPecas(){
+    public List<Pecas> procurarPeca(String nome){
         AcoesSQL acao = new AcoesSQL();
-        return acao.listarNomesPecas();
+        return acao.procurarPeca(nome);
     }
+    
+    public ObservableList<Pecas> listaPecas(String nome) {
+        AcoesSQL acao = new AcoesSQL();
+        List<Pecas> pecas = acao.procurarPeca(nome);
+        return FXCollections.observableList(pecas);
+    }
+    
+    public ObservableList<Pecas> listaPecas() {
+        AcoesSQL acao = new AcoesSQL();
+        List<Pecas> pecas = acao.listarPecas();
+        return FXCollections.observableList(pecas);
+    }
+    
     
     private String calculoPecas(String peso_liq, String pmp){
         if(pmp.equals("0")){
