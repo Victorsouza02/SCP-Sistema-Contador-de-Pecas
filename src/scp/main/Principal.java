@@ -154,7 +154,7 @@ public class Principal extends Application {
         Scene scene = null;
         try {
             root = FXMLLoader.load(Principal.class.getResource("/scp/views/telaprincipal.fxml"));
-            scene = new Scene(root, 657, 531);
+            scene = new Scene(root, 657, 444);
             
         } catch (IOException ex){
             System.out.println(ex.getMessage());
@@ -164,20 +164,6 @@ public class Principal extends Application {
     }
     
     
-    public static Scene relatorioScene(){ //SCENE DO MENU RELATÓRIO
-        Parent root;
-        Scene scene = null;
-        try {
-            root = FXMLLoader.load(Principal.class.getResource("/scp/views/relatorio.fxml"));
-            scene = new Scene(root, 400, 230);
-            
-        } catch (IOException ex){
-            System.out.println(ex.getMessage());
-        }
-        
-        return scene;
-    }
-
     public static Scene configScene(){ //SCENE DO MENU CONFIGURAÇÕES GERAIS
         Parent root;
         Scene scene = null;
@@ -206,26 +192,12 @@ public class Principal extends Application {
         return scene;
     }
     
-    public static Scene pesquisaScene(){ //SCENE DO MENU DE PESQUISA DE PLACA
-        Parent root;
-        Scene scene = null;
-        try {
-            root = FXMLLoader.load(Principal.class.getResource("/scp/views/pesquisaplaca.fxml"));
-            scene = new Scene(root, 860, 482);
-            
-        } catch (IOException ex){
-            ex.printStackTrace();
-        }
-        
-        return scene;
-    }
-    
     public static Scene cadastrarPmpScene(){ //SCENE DO MENU DE PESQUISA DE PLACA
         Parent root;
         Scene scene = null;
         try {
             root = FXMLLoader.load(Principal.class.getResource("/scp/views/cadastropmp.fxml"));
-            scene = new Scene(root, 968, 490);
+            scene = new Scene(root, 968, 550);
             
         } catch (IOException ex){
             ex.printStackTrace();
@@ -239,7 +211,21 @@ public class Principal extends Application {
         Scene scene = null;
         try {
             root = FXMLLoader.load(Principal.class.getResource("/scp/views/pmpconhecido.fxml"));
-            scene = new Scene(root, 968, 543);
+            scene = new Scene(root, 968, 550);
+            
+        } catch (IOException ex){
+            ex.printStackTrace();
+        }
+        
+        return scene;
+    }
+    
+    public static Scene registrosScene(){ //SCENE DO MENU DE PESQUISA DE PLACA
+        Parent root;
+        Scene scene = null;
+        try {
+            root = FXMLLoader.load(Principal.class.getResource("/scp/views/registros.fxml"));
+            scene = new Scene(root, 906, 550);
             
         } catch (IOException ex){
             ex.printStackTrace();
@@ -254,7 +240,7 @@ public class Principal extends Application {
         Scene scene = null;
         try {
             root = FXMLLoader.load(Principal.class.getResource("/scp/views/gerenciarpecas.fxml"));
-            scene = new Scene(root, 823, 535);
+            scene = new Scene(root, 823, 550);
             
         } catch (IOException ex){
             ex.printStackTrace();

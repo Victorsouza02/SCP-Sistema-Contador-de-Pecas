@@ -14,7 +14,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import scp.main.Principal;
-//import scp.models.Impressao;
 
 public class TelaInicialController implements Initializable {
 
@@ -24,10 +23,7 @@ public class TelaInicialController implements Initializable {
     private MenuItem menu_config;
     @FXML
     private MenuItem menu_impressao;
-    @FXML
-    private MenuItem pmp_desconhecido;
-    @FXML
-    private MenuItem contagem_pmp;
+
     
     @FXML
     private ImageView logo;
@@ -38,6 +34,8 @@ public class TelaInicialController implements Initializable {
     private Button btn_contagem;
     @FXML
     private Button btn_gerenciar;
+    @FXML
+    private Button btn_registro;
     
 
 
@@ -74,19 +72,6 @@ public class TelaInicialController implements Initializable {
         });
         
         
-        //AO CLICAR NO MENU PMP DESCONHECIDO
-        pmp_desconhecido.setOnAction((event) -> {
-            //Carrega modal de pmp desconhecido
-            Principal.novaTela(Principal.cadastrarPmpScene(), "Cadastrar Peça - PMP Desconhecido",false);
-        });
-        
-        
-        //AO CLICAR NO MENU PMP DESCONHECIDO
-        contagem_pmp.setOnAction((event) -> {
-            //Carrega modal de pmp desconhecido
-            Principal.novaTela(Principal.contadorPmpScene(), "Contagem de Peças - PMP Conhecido", true);
-        });
-        
         btn_cadastrar.setOnAction((event) -> {
             //Carrega modal de pmp desconhecido
             Principal.novaTela(Principal.cadastrarPmpScene(), "Cadastrar Peça - PMP Desconhecido",false);
@@ -99,14 +84,15 @@ public class TelaInicialController implements Initializable {
         btn_gerenciar.setOnAction((event) -> {
             Principal.novaTela(Principal.gerenciarPecasScene(), "Gerenciar Peças",false);
         });
-
-    }
-
-
-    public void limparCampos() { //LIMPA TODOS OS CAMPOS DO FORMULÁRIO
         
+        btn_gerenciar.setOnAction((event) -> {
+            Principal.novaTela(Principal.gerenciarPecasScene(), "Gerenciar Peças",false);
+        });
+        
+        btn_registro.setOnAction((event) -> {
+            Principal.novaTela(Principal.registrosScene(), "Registros de Contagem",false);
+        });
+
     }
-
-
 
 }

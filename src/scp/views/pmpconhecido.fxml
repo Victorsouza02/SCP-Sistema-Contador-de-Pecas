@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="543.0" prefWidth="968.0" style="-fx-background-color: #d3d3d3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scp.controllers.PmpconhecidoController">
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="968.0" style="-fx-background-color: #d3d3d3;" stylesheets="@telainicial.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scp.controllers.PmpconhecidoController">
    <children>
       <ImageView fitHeight="161.0" fitWidth="320.0" layoutX="60.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -20,7 +20,7 @@
             <Image url="@../imgs/Display.png" />
          </image>
       </ImageView>
-      <Pane layoutX="60.0" layoutY="195.0" prefHeight="319.0" prefWidth="849.0" style="-fx-background-color: #f3f3f3;">
+      <Pane layoutX="60.0" layoutY="195.0" prefHeight="330.0" prefWidth="849.0" style="-fx-background-color: #f3f3f3;" styleClass="form">
          <children>
             <Label layoutX="195.0" layoutY="27.0" text="Insira o PMP manualmente :">
                <font>
@@ -50,7 +50,7 @@
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Pane fx:id="pane_peca" layoutX="168.0" layoutY="160.0" prefHeight="138.0" prefWidth="535.0" style="-fx-background-color: #f3f3f3;">
+            <Pane fx:id="pane_peca" layoutX="168.0" layoutY="160.0" prefHeight="165.0" prefWidth="535.0" style="-fx-background-color: #f3f3f3;">
                <children>
                   <Label layoutX="69.0" layoutY="21.0" text="Nome da Peça :">
                      <font>
@@ -82,6 +82,11 @@
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Label>
+                  <Button fx:id="btn_registrar" layoutX="201.0" layoutY="121.0" mnemonicParsing="false" style="-fx-background-color: green;" text="Registrar Contagem" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </children>

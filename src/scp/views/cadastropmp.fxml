@@ -3,13 +3,17 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="968.0" style="-fx-background-color: #d3d3d3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scp.controllers.CadastroPMP">
-   <children>
+    <stylesheets>
+        <URL value="@../../../../src/scp/views/telainicial.css" />
+    </stylesheets>
+    <children>
       <ImageView fitHeight="146.0" fitWidth="300.0" layoutX="21.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imgs/Display.png" />
@@ -40,7 +44,7 @@
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
-      <Pane layoutX="78.0" layoutY="228.0" prefHeight="180.0" prefWidth="749.0" style="-fx-background-color: #f3f3f3;">
+      <Pane layoutX="80.0" layoutY="232.0" prefHeight="180.0" prefWidth="749.0" style="-fx-background-color: #f3f3f3;" styleClass="form" stylesheets="@telainicial.css">
          <children>
             <Label layoutX="112.0" layoutY="33.0" text="Nome da Peça :">
                <font>

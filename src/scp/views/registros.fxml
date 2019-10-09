@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="906.0" style="-fx-background-color: #d3d3d3;" stylesheets="@telainicial.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scp.controllers.RegistrosController">
+   <children>
+      <TableView fx:id="tabela" layoutX="24.0" layoutY="111.0" prefHeight="366.0" prefWidth="855.0" styleClass="tabela">
+          <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        <columns>
+          <TableColumn fx:id="idcol" text="ID" />
+          <TableColumn fx:id="pecacol" text="Peça" />
+            <TableColumn fx:id="desccol" text="Descrição" />
+            <TableColumn fx:id="qtdcol" text="Qtd. Amostras" />
+            <TableColumn fx:id="pmpcol" text="PMP" />
+            <TableColumn fx:id="datacol" text="Data" />
+            <TableColumn fx:id="horacol" text="Hora" />
+            <TableColumn fx:id="pesocol" text="Peso" />
+            <TableColumn fx:id="contcol" text="Peças Contadas" />
+            <TableColumn fx:id="grandeza" text="Grandeza" />
+        </columns>
+      </TableView>
+      <Label layoutX="338.0" layoutY="31.0" prefHeight="19.0" prefWidth="97.0" text="Digite a Peça :">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tf_nomepeca" layoutX="435.0" layoutY="28.0" />
+      <Label layoutX="191.0" layoutY="76.0" prefHeight="19.0" prefWidth="112.0" text="Buscar por Data :">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="data_inicio" layoutX="312.0" layoutY="72.0" prefHeight="25.0" prefWidth="149.0" />
+      <Label layoutX="472.0" layoutY="76.0" prefHeight="17.0" prefWidth="21.0" text="até">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="data_fim" layoutX="503.0" layoutY="72.0" prefHeight="25.0" prefWidth="149.0" />
+      <Button fx:id="btn_buscardata" layoutX="661.0" layoutY="72.0" mnemonicParsing="false" text="Buscar" />
+      <Button fx:id="btn_imprimir" layoutX="401.0" layoutY="490.0" mnemonicParsing="false" style="-fx-background-color: green;" text="Imprimir Registros" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

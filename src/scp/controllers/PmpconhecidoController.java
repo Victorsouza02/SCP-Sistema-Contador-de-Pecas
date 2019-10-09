@@ -23,6 +23,7 @@ import javafx.scene.layout.Pane;
 import javax.swing.JOptionPane;
 import scp.main.Principal;
 import scp.models.Pecas;
+import scp.models.RegistroContagem;
 import scp.utils.Formatacao;
 
 /**
@@ -64,6 +65,8 @@ public class PmpconhecidoController implements Initializable {
     private Button btn_ok;
     @FXML
     private Button btn_buscar;
+    @FXML
+    private Button btn_registrar;
     
     @FXML
     private Pane pane_peca;
@@ -116,6 +119,14 @@ public class PmpconhecidoController implements Initializable {
                 pane_peca.setVisible(false);
                 JOptionPane.showMessageDialog(null, "Peça não encontrada");
             }
+        });
+        
+        btn_registrar.setOnMouseClicked((event) -> {
+            Pecas pec = new Pecas();
+            pec = pec.procurarPeca(Integer.parseInt(tf_cod_peca.getText()));
+            RegistroContagem reg = new RegistroContagem(pec.getNome(), pec.getDescricao(), pec.getQtd_amostras(), pec.getPmp(), peso_liq.getText(), qtd_pecas.getText(), pec.getGrandeza());
+            reg.registrarContagem();
+            System.out.println("Contagem registrada");
         });
     }
     

@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import scp.main.Principal;
 import scp.models.Pecas;
 import scp.utils.Formatacao;
+import scp.utils.Mensagem;
 
 public class CadastroPMP implements Initializable {
   
@@ -83,15 +84,25 @@ public class CadastroPMP implements Initializable {
         });
 
         salvar.setOnMouseClicked((event) ->{
-            Pecas pec = new Pecas(nome.getText(), descricao.getText(), getPmp_decimal().toString(), qtd_amostras.getText(), grandeza.getValue().toString());
-            pec.salvarPeca();
-            calcularPmp = false;
-            calcularPecas = false;
-            qtd_pecas.setText("0");
-            pmp.setText("0");
-            nome.setText("");
-            descricao.setText("");
-            qtd_amostras.setText("");
+            String validacao = validacaoCampos();
+            if(validacao.equals("")){
+                try {
+                    Pecas pec = new Pecas(nome.getText(), descricao.getText(), getPmp_decimal().toString(), qtd_amostras.getText(), grandeza.getValue().toString());
+                    pec.salvarPeca();
+                    calcularPmp = false;
+                    calcularPecas = false;
+                    qtd_pecas.setText("0");
+                    pmp.setText("0");
+                    nome.setText("");
+                    descricao.setText("");
+                    qtd_amostras.setText("");
+                    Mensagem.mensagemSucesso("Peça cadastrada com sucesso", descricao.getScene().getWindow());
+                } catch (Exception e ){
+                    Mensagem.mensagemErro("Erro no calculo PMP - Verifique sua conexão serial",descricao.getScene().getWindow());
+                }
+            }else {
+                Mensagem.mensagemErro(validacao,descricao.getScene().getWindow());
+            }
         });
     }
     
@@ -138,7 +149,6 @@ public class CadastroPMP implements Initializable {
         grandezas.add("g");
         grandezas.add("kg");
         grandeza.setItems(FXCollections.observableArrayList(grandezas));
-        
     }
     
     private String calculoPmp(String peso_liq, String qtd_amostras){
@@ -157,6 +167,21 @@ public class CadastroPMP implements Initializable {
         BigDecimal num = new BigDecimal(peso_liq).divide(pmp_decimal,30,RoundingMode.HALF_EVEN);
         num = num.setScale(0,RoundingMode.HALF_EVEN);
         return String.valueOf(num.intValue());
+    }
+    
+    private String validacaoCampos(){
+        String erro = "";
+        if(nome.getText().equals("")){
+            nome.requestFocus();
+            erro = "Campo NOME não preenchido";
+        } else if (descricao.getText().equals("")){
+            descricao.requestFocus();
+            erro = "Campo DESCRIÇÃO não preenchido";
+        } else if(qtd_amostras.getText().equals("")){
+            qtd_amostras.requestFocus();
+            erro = "Campo QTD. AMOSTRAS não preenchido";
+        }
+        return erro;
     }
     
 

@@ -3,21 +3,20 @@ $ENDERECOEMPRESA
 $TELEMPRESA
 
 ************************************************
-COMPROVANTE DE PESAGEM Nº: $ID
+COMPROVANTE DE CONTAGEM : $ID
 ************************************************
-PRODUTO   : $PRODUTO
-FORNECEDOR: $FORNECEDOR
-MOTORISTA : $MOTORISTA
-PLACA : $PLACA
 
---------------------ENTRADA---------------------
-DATA: $DT_ENTRADA  HORA: $HH_ENTRADA
-PESO:  $PS_ENTRADA
+**************** DADOS DA PECA *****************
+PECA: $PECA
+DESCRICAO: $DESCRICAO
+QTD. AMOSTRAS : $QTDAMOSTRAS
+PMP : $PMP
 
----------------------SAIDA----------------------
-DATA: $DT_SAIDA    HORA: $HH_SAIDA
-PESO : $PS_SAIDA
-PESO LIQ.: $PS_LIQ
+************** DADOS DA CONTAGEM ***************
+DATA: $DATA  HORA: $HORA
+PESO LIQUIDO:  $PESO
+PECAS CONTADAS:  $PCONTADAS
+
 ************************************************
-SGP - Sistema Gerenciador de Pesagem
+SCP - Sistema Contador de Pecas
 EBM Metrologia
