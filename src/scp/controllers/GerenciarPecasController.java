@@ -168,7 +168,7 @@ public class GerenciarPecasController implements Initializable {
         
         //EVENTO - CLICAR NO BOTÃO DE FAZER CONTAGEM
         btn_contagem.setOnMouseClicked((event)->{
-            PmpconhecidoController.codPassado = lb_codpeca.getText();
+            ContagemPecasController.codPassado = lb_codpeca.getText();
             Principal.novaTela(Principal.contadorPmpScene(), "Contagem de Peças - PMP Conhecido", true);
             Stage stage = (Stage) btn_contagem.getScene().getWindow();
             stage.close();

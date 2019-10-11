@@ -14,7 +14,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import scp.controllers.PmpconhecidoController;
+import scp.controllers.ContagemPecasController;
 import scp.models.Autorizacao;
 import scp.models.LerSerial;
 import scp.models.Propriedades;
@@ -47,8 +47,8 @@ public class Principal extends Application {
 
     @Override
     public void start(Stage stage) {
-        Autorizacao pd = new Autorizacao();
         new Propriedades();
+        Autorizacao pd = new Autorizacao();
         if(pd.isAutorizado()){ //SE O USUARIO ESTIVER AUTORIZADO
             //Inicia Stage Principal e as Threads
             this.primaryStage = stage;
@@ -210,7 +210,7 @@ public class Principal extends Application {
         Parent root;
         Scene scene = null;
         try {
-            root = FXMLLoader.load(Principal.class.getResource("/scp/views/pmpconhecido.fxml"));
+            root = FXMLLoader.load(Principal.class.getResource("/scp/views/contagempecas.fxml"));
             scene = new Scene(root, 968, 550);
             
         } catch (IOException ex){

@@ -138,7 +138,7 @@ public class LerSerial {
     }
 
     //SELECIONA O TIPO DE FORMATAÇÃO DE ACORDO COM O EQUIPAMENTO
-    public Map<String, String> selecionarDadosEquipamento() {
+    public Map<String, String> selecionarDadosEquipamento(){
         switch (equipamento) {
             case "WT1000N":
                 return Formatacao.formatarDadosWT1000N(receberDadosSerial());
@@ -184,7 +184,7 @@ public class LerSerial {
                         ex.printStackTrace();
                     }
                 }
-            }
+            } 
         }
     }
     

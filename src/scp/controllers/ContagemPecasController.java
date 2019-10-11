@@ -5,6 +5,7 @@
  */
 package scp.controllers;
 
+import com.sun.corba.se.pept.protocol.MessageMediator;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URL;
@@ -25,15 +26,16 @@ import scp.main.Principal;
 import scp.models.Pecas;
 import scp.models.RegistroContagem;
 import scp.utils.Formatacao;
+import scp.utils.Mensagem;
 
 /**
  * FXML Controller class
  *
  * @author Desenvolvimento
  */
-public class PmpconhecidoController implements Initializable {
+public class ContagemPecasController implements Initializable {
     
-    public PmpconhecidoController (){
+    public ContagemPecasController (){
 
     }
     
@@ -106,18 +108,22 @@ public class PmpconhecidoController implements Initializable {
 
         btn_buscar.setOnMouseClicked((event) -> {
             Pecas pec = new Pecas();
-            pec = pec.procurarPeca(Integer.parseInt(tf_cod_peca.getText()));
-            if (pec != null){
-                pane_peca.setVisible(true);
-                lb_nome_peca.setText(pec.getNome());
-                lb_desc.setText(pec.getDescricao());
-                lb_pmp.setText(pec.getPmp()+pec.getGrandeza());
-                cb_grandeza.setValue(pec.getGrandeza());
-                pmp = pec.getPmp();
-                calcularPecas = true;
-            }else {
-                pane_peca.setVisible(false);
-                JOptionPane.showMessageDialog(null, "Peça não encontrada");
+            try{
+                pec = pec.procurarPeca(Integer.parseInt(tf_cod_peca.getText()));
+                if (pec != null){
+                    pane_peca.setVisible(true);
+                    lb_nome_peca.setText(pec.getNome());
+                    lb_desc.setText(pec.getDescricao());
+                    lb_pmp.setText(pec.getPmp()+pec.getGrandeza());
+                    cb_grandeza.setValue(pec.getGrandeza());
+                    pmp = pec.getPmp();
+                    calcularPecas = true;
+                }else {
+                    pane_peca.setVisible(false);
+                    Mensagem.mensagemErro("Peça não encontrada no sistema", pane_peca.getScene().getWindow());
+                }
+            } catch(NumberFormatException ex){
+                Mensagem.mensagemErro("Código em branco ou inválido.", pane_peca.getScene().getWindow());
             }
         });
         
@@ -188,7 +194,7 @@ public class PmpconhecidoController implements Initializable {
             return String.valueOf(num.intValue());
         } catch(Exception e){
             calcularPecas = false;
-            JOptionPane.showMessageDialog(null, "Valor inválido");
+            Mensagem.mensagemErro("Valor em branco ou inválido", tf_pmp.getScene().getWindow());
             tf_pmp.setText("");
         }
         return "0";
