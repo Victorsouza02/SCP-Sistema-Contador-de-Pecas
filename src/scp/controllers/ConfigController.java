@@ -23,6 +23,8 @@ public class ConfigController implements Initializable {
     private ComboBox porta;
     @FXML
     private ComboBox equipamento;
+    @FXML
+    private ComboBox cb_somenteestavel;
 
     
     
@@ -31,6 +33,7 @@ public class ConfigController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         porta.setValue(Propriedades.getPorta());
         equipamento.setValue(Propriedades.getEquipamento());
+        cb_somenteestavel.setValue((Propriedades.isSomente_estavel())? "SIM" : "NÃO");
         carregarComboBox();
         eventos();
     } 
@@ -40,7 +43,7 @@ public class ConfigController implements Initializable {
         salvar.setOnMouseClicked((event)->{ //Ao clicar em Salvar
             Propriedades prop = new Propriedades();
             //Altera as propriedades (Porta e Equipamento)
-            prop.alterarPropriedades(porta.getValue().toString(), equipamento.getValue().toString());
+            prop.alterarPropriedades(porta.getValue().toString(), equipamento.getValue().toString(), cb_somenteestavel.getValue().toString());
             System.exit(0); //Encerra o sistema
         });
     }
@@ -49,6 +52,7 @@ public class ConfigController implements Initializable {
     public void carregarComboBox(){
         porta.setItems(FXCollections.observableArrayList(LerSerial.portas));
         equipamento.setItems(FXCollections.observableArrayList(LerSerial.equipamentos));
+        cb_somenteestavel.setItems(FXCollections.observableArrayList("SIM", "NÃO"));
     }
     
 }

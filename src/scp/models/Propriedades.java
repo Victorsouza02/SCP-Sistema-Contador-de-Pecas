@@ -27,6 +27,7 @@ public class Propriedades {
     private static String telempresa;
     private static String autorizacao;
     private static String altura;
+    private static boolean somente_estavel;
     
     public Propriedades(){
         try {
@@ -49,16 +50,18 @@ public class Propriedades {
             setTelempresa(prop.getProperty("telempresa"));
             setAutorizacao(prop.getProperty("chave"));
             setAltura(prop.getProperty("altura"));
+            setSomente_estavel(prop.getProperty("somenteestavel").equals("S"));
         } catch (UnsupportedEncodingException ex) {
             ex.printStackTrace();
         }
     }
     
     //ALTERA OS VALORES NO ARQUIVO DE PROPRIEDADES(PORTA E EQUIPAMENTO)
-    public void alterarPropriedades(String porta, String equipamento){
+    public void alterarPropriedades(String porta, String equipamento, String somente_estavel){
         try {
             prop.setProperty("porta", porta);
             prop.setProperty("equipamento", equipamento);
+            prop.setProperty("somenteestavel", (somente_estavel.equals("SIM"))? "S" : "N");
             prop.store(new FileOutputStream(PROP_URL), null);
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
@@ -71,10 +74,10 @@ public class Propriedades {
     public void alterarPropriedades(String fonte, String nome , String endereco, String tel, String altura){
         try {
             prop.setProperty("tamanhofonte", fonte);
-            prop.setProperty("altura", altura);
             prop.setProperty("nomeempresa", nome);
             prop.setProperty("enderecoempresa", endereco);
             prop.setProperty("telempresa", tel);
+            prop.setProperty("altura", altura);
             prop.store(new FileOutputStream(PROP_URL), null);
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
@@ -148,13 +151,12 @@ public class Propriedades {
     public static void setAltura(String altura) {
         Propriedades.altura = altura;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+    public static boolean isSomente_estavel() {
+        return somente_estavel;
+    }
+
+    public static void setSomente_estavel(boolean somente_estavel) {
+        Propriedades.somente_estavel = somente_estavel;
+    }
 }
