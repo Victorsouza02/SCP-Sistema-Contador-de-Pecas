@@ -17,27 +17,32 @@
                   <Image url="@../../../../../../Downloads/logoEBM_III.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" layoutX="109.0" layoutY="37.0" prefHeight="19.0" prefWidth="238.0" text="Desenvolvido por EBM Metrologia">
+            <Label alignment="CENTER" layoutX="109.0" layoutY="28.0" prefHeight="19.0" prefWidth="238.0" text="Desenvolvido por :">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="-3.0" layoutY="111.0" prefHeight="17.0" prefWidth="360.0" text="Todos os direitos reservados - 2019">
+            <Label alignment="CENTER" layoutX="4.0" layoutY="111.0" prefHeight="19.0" prefWidth="346.0" text="Sistema Contador de Peças - 2019">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="-3.0" layoutY="82.0" prefHeight="17.0" prefWidth="360.0" text="Versão 1.00">
+            <Label fx:id="versao" alignment="CENTER" layoutX="-3.0" layoutY="91.0" prefHeight="17.0" prefWidth="360.0" text="Versão 1.00">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutY="151.0" prefHeight="19.0" prefWidth="353.0" text="Contato  : (21) 2472 - 5858">
+            <Label fx:id="telefone" alignment="CENTER" layoutX="7.0" layoutY="151.0" prefHeight="19.0" prefWidth="339.0" text="Contato  : (21) 2472 - 5858">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutY="167.0" prefHeight="19.0" prefWidth="353.0" text="ebmmetrologia.com.br">
+            <Label fx:id="site" alignment="CENTER" layoutX="7.0" layoutY="167.0" prefHeight="19.0" prefWidth="339.0" text="ebmmetrologia.com.br">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="nome_empresa" alignment="CENTER" layoutX="109.0" layoutY="47.0" prefHeight="19.0" prefWidth="238.0" text="EBM">
                <font>
                   <Font name="System Bold Italic" size="13.0" />
                </font>

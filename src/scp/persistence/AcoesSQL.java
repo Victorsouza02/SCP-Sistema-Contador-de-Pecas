@@ -311,5 +311,38 @@ public class AcoesSQL {
         return reg;
     }
     
+    public RegistroContagem getUltimoRegistro(){
+        Conexao conexao = new Conexao();
+        RegistroContagem reg = null;
+        SimpleDateFormat dateFormatSql = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormatView = new SimpleDateFormat("dd/MM/yyyy");
+        Date data = new Date();
+        try {
+            PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * from registro order by id desc limit 1");
+            ResultSet result = sql.executeQuery();
+            while(result.next()){
+                data = dateFormatSql.parse(result.getString("data"));
+                reg = new RegistroContagem(
+                   result.getString("nome_peca"),
+                   result.getString("desc_peca"),
+                   result.getString("qtd_amostras"),
+                   result.getString("pmp"),
+                   dateFormatView.format(data),
+                   result.getString("hora"),
+                   result.getString("peso"),
+                   result.getString("pecas_contadas"),
+                   result.getString("grandeza")
+                );
+                reg.setId(result.getInt("id"));
+            }
+            sql.close();
+        } catch(SQLException ex){
+            ex.printStackTrace();
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        return reg;
+    }
+    
     
 }

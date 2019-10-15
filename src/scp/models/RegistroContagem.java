@@ -4,12 +4,7 @@
  */
 package scp.models;
 
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import scp.persistence.AcoesSQL;
 
 /**

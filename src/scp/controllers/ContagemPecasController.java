@@ -23,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javax.swing.JOptionPane;
 import scp.main.Principal;
+import scp.models.Impressao;
 import scp.models.Pecas;
 import scp.models.RegistroContagem;
 import scp.utils.Formatacao;
@@ -132,6 +133,7 @@ public class ContagemPecasController implements Initializable {
             pec = pec.procurarPeca(Integer.parseInt(tf_cod_peca.getText()));
             RegistroContagem reg = new RegistroContagem(pec.getNome(), pec.getDescricao(), pec.getQtd_amostras(), pec.getPmp(), peso_liq.getText(), qtd_pecas.getText(), pec.getGrandeza());
             reg.registrarContagem();
+            Impressao.gerarHtml();
             System.out.println("Contagem registrada");
         });
     }

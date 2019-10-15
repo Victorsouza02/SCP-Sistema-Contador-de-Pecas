@@ -8,7 +8,7 @@ public class ConfiguracaoGlobal {
     
     //**************** CONFIGURAÇÃO VISUAL **********************
     
-    //********************* TELA PRINCIPAL
+    //############## TELA PRINCIPAL ###############
     //ICONE DO APLICATIVO
     private static final String ICONE_IMG= "ebmico.jpg";
     //IMAGEM DO DISPLAY
@@ -16,7 +16,7 @@ public class ConfiguracaoGlobal {
     //TITULO DA TELA INICIAL
     private static final String TITULO_INICIAL = "Sistema Contador de Peças - EBM Metrologia";
     
-    //******************* TELA SOBRE
+    //############## TELA SOBRE ##############
     //IMAGEM COM A LOGO DA EMPRESA
     private static final String LOGO_EMPRESA = "logoebm.png";
     private static final String NOME_EMPRESA = "EBM";
@@ -26,8 +26,12 @@ public class ConfiguracaoGlobal {
     
     //***********************************************************
    
+    // ********************** FUNÇÕES ***************************
+    
+    //ATIVA FUNÇÃO DE PROTEÇÃO 
     private static final boolean PROTECAO = true;
 
+    // **********************************************************
 
     public static String getTITULO_INICIAL() {
         return TITULO_INICIAL;

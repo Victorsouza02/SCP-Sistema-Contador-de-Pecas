@@ -9,25 +9,48 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import scp.config.ConfiguracaoGlobal;
 import scp.main.Principal;
 
-/**
- * FXML Controller class
- *
- * @author Desenvolvimento
- */
+
+
 public class SobreController implements Initializable {
     @FXML
     private ImageView imagem;
+    @FXML
+    private Label nome_empresa;
+    @FXML
+    private Label versao;
+    @FXML
+    private Label telefone;
+    @FXML
+    private Label site;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Image img = new Image(Principal.class.getResourceAsStream("/scp/imgs/logoebm.png"));
+        atribuirValores();
+    }
+    
+    private void atribuirValores(){
+        Image img = new Image(Principal.class.getResourceAsStream("/scp/imgs/"+ConfiguracaoGlobal.getLOGO_EMPRESA()));
         imagem.setImage(img);
-    }    
+        nome_empresa.setText(ConfiguracaoGlobal.getNOME_EMPRESA());
+        versao.setText("Versão : "+ConfiguracaoGlobal.getVERSAO());
+        telefone.setText("Contato : "+ConfiguracaoGlobal.getTELEFONE());
+        site.setText(ConfiguracaoGlobal.getSITE());
+    }
+
+
+    
+    
+    
+
+    
     
 }

@@ -29,6 +29,82 @@ public class Impressao {
     private static final String FONTE = Propriedades.getFonte();
     private static final String[] substituir = new String[]{"$NOMEEMPRESA","$ENDERECOEMPRESA","$TELEMPRESA","$ID", "$PECA", "$DESCRICAO", "$QTDAMOSTRAS", "$PMP", "$DATA",
                         "$HORA", "$PESO", "$PCONTADAS"};
+    
+    public static void gerarHtml(){
+        try {
+            AcoesSQL acao = new AcoesSQL();
+            RegistroContagem reg = acao.getUltimoRegistro();
+            //ARQUIVO DE LEITURA
+            BufferedReader buffRead = new BufferedReader(new InputStreamReader(new FileInputStream(PATH_TXT), StandardCharsets.ISO_8859_1));
+            String linha = "";
+            //ARQUIVO DE ESCRITA
+            OutputStreamWriter buffWrite = new OutputStreamWriter(new FileOutputStream(PATH_HTML), StandardCharsets.UTF_8);
+
+            buffWrite.write("");
+            buffWrite.append("<!DOCTYPE html><html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'></head><body><pre style='font-size:"+FONTE+"px'><center>");
+            while (true) {
+                if (linha != null) {
+                    for (String str : substituir) {
+                        //VERIFICA SE A LINHA TEM A VARIAVEL DE SUBSTITUIÇÃO E COLOCA UM VALOR NO LOCAL
+                        if (linha.contains(str)) {
+                            linha = colocarValores(linha, str, reg);
+                        }
+                    }
+                    buffWrite.append(linha + "<br>");
+                } else {
+                    break;
+                }
+                linha = buffRead.readLine();
+            }
+            for(int i = 1; i <= Integer.parseInt(Propriedades.getAltura()); i++){
+               buffWrite.append("&nbsp"+"<br>");
+            }
+            buffWrite.append("</pre><script>print()</script></body></html>");
+            buffRead.close();
+            buffWrite.close();
+            BrowserLaunch.openURL(PATH_HTML);
+        } catch (IOException iEx) {
+            System.out.println(iEx.getMessage());
+        }
+    }
+    
+    public static void recriarHtml(int id){
+        try {
+            AcoesSQL acao = new AcoesSQL();
+            RegistroContagem reg = acao.getRegistro(id);
+            //ARQUIVO DE LEITURA
+            BufferedReader buffRead = new BufferedReader(new InputStreamReader(new FileInputStream(PATH_TXT), StandardCharsets.ISO_8859_1));
+            String linha = "";
+            //ARQUIVO DE ESCRITA
+            OutputStreamWriter buffWrite = new OutputStreamWriter(new FileOutputStream(PATH_HTML), StandardCharsets.UTF_8);
+
+            buffWrite.write("");
+            buffWrite.append("<!DOCTYPE html><html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'></head><body><pre style='font-size:"+FONTE+"px'><center>");
+            while (true) {
+                if (linha != null) {
+                    for (String str : substituir) {
+                        //VERIFICA SE A LINHA TEM A VARIAVEL DE SUBSTITUIÇÃO E COLOCA UM VALOR NO LOCAL
+                        if (linha.contains(str)) {
+                            linha = colocarValores(linha, str, reg);
+                        }
+                    }
+                    buffWrite.append(linha + "<br>");
+                } else {
+                    break;
+                }
+                linha = buffRead.readLine();
+            }
+            for(int i = 1; i <= Integer.parseInt(Propriedades.getAltura()); i++){
+               buffWrite.append("&nbsp"+"<br>");
+            }
+            buffWrite.append("</pre><script>print()</script></body></html>");
+            buffRead.close();
+            buffWrite.close();
+            BrowserLaunch.openURL(PATH_HTML);
+        } catch (IOException iEx) {
+            System.out.println(iEx.getMessage());
+        }
+    }
 
     public static void fazerEtiquetaHtml(int id) { //FAZER O ETIQUETA/CUPOM EM HTML PARA IMPRESSÃO
         try {

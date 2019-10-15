@@ -14,6 +14,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
+import scp.config.VariaveisGlobais;
 
 /**
  *
@@ -186,8 +187,10 @@ public class Formatacao {
                 dados.put("peso_liq", "0");
                 dados.put("tara", "0");
             }
+            VariaveisGlobais.setErroDetectado(false);
         } catch (Exception ex) {
-            System.out.println("Erro de formatação, verifique se selecionou o equipamento correto.");
+            VariaveisGlobais.setErroDetectado(true);
+            VariaveisGlobais.setMensagem("Erro de formatação, verifique se selecionou o equipamento correto.");
         }
 
         System.out.println("Peso Bruto: " + dados.get("peso_bru") + "/  Peso Liquido : " + dados.get("peso_liq") + "/  Tara : " + dados.get("tara"));
@@ -204,10 +207,11 @@ public class Formatacao {
             if (!sobrecarga) {
                 String peso_bru = dado.substring(2, 9);
                 String peso_liq = dado.substring(18, 25);
-
+                String tara = dado.substring(10, 17);
                 List<String> pesos = new ArrayList<String>();
                 pesos.add(peso_bru);
                 pesos.add(peso_liq);
+                pesos.add(tara);
                 int cnt = 0;
                 for (String peso : pesos) {
                     if (peso.equals("000000 ") || peso.equals("0000000")) {
@@ -237,12 +241,15 @@ public class Formatacao {
                         case 1:
                             peso_liq = peso;
                             break;
+                        case 2:
+                            tara = peso;
+                            break;    
                     }
                     cnt++;
                 }
                 dados.put("estavel", dado.substring(0, 1).equals("0") ? "E" : "O");
                 dados.put("peso_bru", peso_bru);
-                dados.put("tara", dado.substring(10, 17));
+                dados.put("tara", tara);
                 dados.put("peso_liq", peso_liq);
             } else {
                 dados.put("estavel", "SOB");
@@ -250,10 +257,12 @@ public class Formatacao {
                 dados.put("tara", "0");
                 dados.put("peso_liq", "0");
             }
+            VariaveisGlobais.setErroDetectado(false);
         } catch (Exception e){
-            System.out.println("Erro de formatação, verifique se selecionou o equipamento correto.");
+            VariaveisGlobais.setErroDetectado(true);
+            VariaveisGlobais.setMensagem("Erro de formatação, verifique se selecionou o equipamento correto.");
         }
-
+        System.out.println("Peso Bruto: " + dados.get("peso_bru") + "/  Peso Liquido : " + dados.get("peso_liq") + "/  Tara : " + dados.get("tara"));
         return dados;
     }
 
