@@ -127,10 +127,11 @@ public class AcoesSQL {
             PreparedStatement sql = conexao.getConexao().prepareStatement("SELECT * from pecas");
             ResultSet result = sql.executeQuery();
             while(result.next()){
+                String pmp = result.getString("pmp");
                 Pecas pec = new Pecas(
                    result.getString("nome"),
                    result.getString("descricao"),
-                   result.getString("pmp"),
+                   pmp.substring(0,7),
                    result.getString("qtd_amostras"),
                    result.getString("grandeza")
                 );
@@ -183,11 +184,12 @@ public class AcoesSQL {
             ResultSet result = sql.executeQuery();
             while(result.next()){
                 data = dateFormatSql.parse(result.getString("data"));
+                String pmp = result.getString("pmp");
                 RegistroContagem reg = new RegistroContagem(
                    result.getString("nome_peca"),
                    result.getString("desc_peca"),
                    result.getString("qtd_amostras"),
-                   result.getString("pmp"),
+                   pmp.substring(0,6),
                    dateFormatView.format(data),
                    result.getString("hora"),
                    result.getString("peso"),

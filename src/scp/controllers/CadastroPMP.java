@@ -153,7 +153,7 @@ public class CadastroPMP implements Initializable {
     
     private String calculoPmp(String peso_liq, String qtd_amostras){
         if(!qtd_amostras.equals("0")){
-            BigDecimal num = new BigDecimal(peso_liq).divide(new BigDecimal(qtd_amostras+".00"), 4, RoundingMode.HALF_EVEN);
+            BigDecimal num = new BigDecimal(peso_liq).divide(new BigDecimal(qtd_amostras+".00"), 30, RoundingMode.HALF_EVEN);
             setPmp_decimal(num);
             return num.setScale(3, RoundingMode.HALF_EVEN).toString().replaceAll(",", ".");
         }
